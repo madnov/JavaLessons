@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class Task_1 {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in, "cp866");
+        Scanner sc = new Scanner(System.in, "cp866");
         System.out.printf("Введите число: ");
-        Integer number = scan.nextInt();
+        Integer number = sc.nextInt();
         int total = 0;
         for (int i = 0; i <= number; i++) {
             total += i;
