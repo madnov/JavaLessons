@@ -1,9 +1,12 @@
+package HomeWork_2;
 
 import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class draft {
+// Реализуйте алгоритм сортировки пузырьком числового массива, результат после каждой итерации запишите в лог-файл.
+
+public class Task_2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in, "cp866");
         System.out.print("Введите количество чисел для ввода: ");
