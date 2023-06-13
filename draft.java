@@ -1,42 +1,53 @@
 
-import java.io.FileWriter;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.FileReader;
+
+//  Дана строка (сохранить в файл и читать из файла)
+// [{"фамилия":"Иванов","оценка":"5","предмет":"Математика"},{"фамилия":"Петрова","оценка":"4","предмет":"Информатика"},{"фамилия":"Краснов","оценка":"5","предмет":"Физика"}]
+// Написать метод(ы), который распарсит json и, используя StringBuilder, создаст строки вида: Студент [фамилия] получил [оценка] по предмету [предмет].
+// Пример вывода:
+// Студент Иванов получил 5 по предмету Математика.
+// Студент Петрова получил 4 по предмету Информатика.
+// Студент Краснов получил 5 по предмету Физика.
 
 public class draft {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in, "cp866");
-        System.out.print("Введите количество чисел для ввода: ");
-        int count = sc.nextInt();
-        int[] array = new int[count];
-        for (int i = 0; i < count; i++) {
-            System.out.print("Введите " + (i + 1) + " число: ");
-            array[i] = sc.nextInt();
-        }
-        System.out.println("Массив до сортировки: ");
-        System.out.println(Arrays.toString(array));
-        System.out.println("Массив после сортировки: ");
-        bubbleSort(array);
 
-    }
+        try {
+            FileReader fileReader = new FileReader("HomeWork_2\\task_3.txt");
 
-    public static void bubbleSort(int[] arr) {
-        int n = arr.length;
-        try (FileWriter writer = new FileWriter("HomeWork_2\\text.txt", false)) {
-            for (int i = 0; i < n - 1; i++) {
-                for (int j = 0; j < n - i - 1; j++) {
-                    if (arr[j] > arr[j + 1]) {
-                        int temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
-                    }
-                }
-                writer.write(Arrays.toString(arr) + "\n");
+            char[] arr = new char[500];
+            fileReader.read(arr);
+            String str = "";
+            for (char c : arr) {
+                str += c;
             }
+            fileReader.close();
+            System.out.println(stringParse(str));
         } catch (Exception e) {
             System.out.println("Что-то пошло не так");
         }
-
-        System.out.println(Arrays.toString(arr));
     }
+
+    public static String stringParse(String str) {
+
+        str = str.replace("]", "");
+        str = str.replace("[", "");
+        str = str.replaceAll("[{}\":]", "");
+        str = str.replaceAll("фамилия", " Cтудент ");
+        str = str.replaceAll("оценка", " получил(a) ");
+        str = str.replaceAll("предмет", " по предмету ");
+
+        String[] splitString = str.split(",");
+
+        StringBuilder students = new StringBuilder();
+        int count = 0;
+        for (int i = 0; i < splitString.length / 3; i++) {
+            students.append(splitString[count]).append(splitString[count + 1]).append(splitString[count + 2])
+                    .append("\n");
+            count += 3;
+        }
+        return students.toString();
+
+    }
+
 }

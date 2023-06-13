@@ -25,7 +25,7 @@ public class Task_2 {
 
     public static void bubbleSort(int[] arr) {
         int n = arr.length;
-        try (FileWriter writer = new FileWriter("HomeWork_2\\text.txt", false)) {
+        try (FileWriter writer = new FileWriter("HomeWork_2\\task_2.txt", false)) {
             for (int i = 0; i < n - 1; i++) {
                 for (int j = 0; j < n - i - 1; j++) {
                     if (arr[j] > arr[j + 1]) {
