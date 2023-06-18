@@ -1,3 +1,5 @@
+package HomeWork_4;
+
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -15,8 +17,8 @@ import java.util.LinkedList;
  * Ответ всегда - связный список, в обычном порядке
  * [-,4,2,4,3,5] - пример ответа
  */
+public class Task {
 
-public class draft {
     public static void main(String[] args) {
         Deque<Integer> num1 = new LinkedList<Integer>();
         Deque<Integer> num2 = new LinkedList<Integer>();
@@ -27,6 +29,7 @@ public class draft {
         num2.add(5);
         num2.add(2);
         num2.add(3);
+        num2.add(5);
 
         int number1 = getDigit(num1);
         int number2 = getDigit(num2);
@@ -45,7 +48,6 @@ public class draft {
     public static int getDigit(Deque<Integer> number) {
         int result = 0;
         while (!number.isEmpty()) {
-
             result = result * 10 + number.removeLast();
         }
 
@@ -62,12 +64,10 @@ public class draft {
             return ll;
         } else {
             while (number < 0) {
-                ll.addFirst(Math.abs(number % 10));
+                ll.addFirst(number % 10);
                 number /= 10;
             }
-
-            return ll;
         }
-
+        return ll;
     }
 }
