@@ -31,8 +31,8 @@ public class Task {
         num2.add(3);
         num2.add(5);
 
-        int number1 = getDigit(num1);
-        int number2 = getDigit(num2);
+        int number1 = getDigits(num1);
+        int number2 = getDigits(num2);
         int result1 = number1 * number2;
         int result2 = number1 + number2;
 
@@ -45,7 +45,7 @@ public class Task {
 
     }
 
-    public static int getDigit(Deque<Integer> number) {
+    public static int getDigits(Deque<Integer> number) {
         int result = 0;
         while (!number.isEmpty()) {
             result = result * 10 + number.removeLast();
